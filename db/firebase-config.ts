@@ -7,12 +7,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAovKUsWDlyjaOJWzjF6fMOAMaL0tgEmnc",
-  authDomain: "tinder-clone-rn-99869.firebaseapp.com",
-  projectId: "tinder-clone-rn-99869",
-  storageBucket: "tinder-clone-rn-99869.appspot.com",
-  messagingSenderId: "244860282255",
-  appId: "1:244860282255:web:5978eb6adf9eda44a757fa",
+  apiKey: " ",
+  authDomain: " ",
+  projectId: " ",
+  storageBucket: " ",
+  messagingSenderId: " ",
+  appId: " ",
 };
 
 // Initialize Firebase
