@@ -30,7 +30,7 @@ const config = {
   permissions: ["public_profile", "email", "gender", "location"],
 };
 
-export const AuthProvider: FC = ({ children }: any) => {
+export const AuthProvider: FC = ({ children }) => {
   const [error, setError] = useState(null);
   const [user, setUser] = useState<any>(null);
   const [loadingInitial, setLoadingInitial] = useState(true);
