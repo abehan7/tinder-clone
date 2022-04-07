@@ -10,7 +10,7 @@ const ReceiverMessage: FC<IReceiverMessageProps> = ({ text, photoURL }) => {
   return (
     <View
       style={[
-        tw`bg-red-400 rounded-lg rounded-tl-none px-5 py-3 mx-3 my-2 ml-14  `,
+        tw`bg-red-400 rounded-lg rounded-tl-none px-5 py-3 mx-3 my-2 ml-14 justify-start`,
         { alignSelf: "flex-start" },
       ]}
     >

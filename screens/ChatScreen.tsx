@@ -5,13 +5,11 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  Text,
   TextInput,
   View,
   TouchableWithoutFeedback,
   FlatList,
 } from "react-native";
-
 import { messages as dummy } from "../db/dummy";
 
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -20,15 +18,7 @@ import Header from "../components/Header";
 import { IMessage } from "../interfaces";
 import SenderMessage from "../components/SenderMessage";
 import ReceiverMessage from "../components/ReceiverMessage";
-
-const Item = ({ text, user }: { text: string; user: string }) => {
-  return (
-    <View>
-      <Text>{text}</Text>
-    </View>
-  );
-};
-
+import { Header as HeaderNav } from "react-navigation-stack";
 const user = {
   name: "Zendaya",
   uid: "1",
@@ -40,7 +30,7 @@ const user = {
 
 const ChatScreen: FC = () => {
   const [input, setInput] = useState<string>("");
-  const [messages, setMessages] = useState<IMessage[]>(dummy);
+  const [messages, setMessages] = useState<IMessage[]>(dummy.reverse());
   const { params } = useRoute();
   const onPress = () => {};
   const sendMessage = () => {};
@@ -62,16 +52,14 @@ const ChatScreen: FC = () => {
   return (
     <SafeAreaView style={tw`flex-1`}>
       <Header title={user.name} callEnabled={true} />
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={10}
-      >
+      <KeyboardAvoidingView style={tw`flex-1`}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <FlatList
             data={messages}
             style={tw`pl-4`}
             keyExtractor={(message) => message.id}
             renderItem={renderItem}
+            inverted={true}
           />
         </TouchableWithoutFeedback>
 
