@@ -51,8 +51,8 @@ const ChatScreen: FC = () => {
 
   return (
     <SafeAreaView style={tw`flex-1`}>
-      <Header title={user.name} callEnabled={true} />
       <KeyboardAvoidingView style={tw`flex-1`}>
+        <Header title={user.name} callEnabled={true} />
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <FlatList
             data={messages}
