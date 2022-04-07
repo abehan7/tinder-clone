@@ -9,7 +9,6 @@ import {
 } from "@firebase/auth";
 import { auth } from "../db/firebase-config";
 import { useMemo } from "react";
-import { ILoginResult, IUser } from "../interfaces";
 
 interface IAuthProps {
   user: any;
