@@ -48,16 +48,22 @@ const ChatScreen: FC = () => {
 
   useLayoutEffect(() => navigation.setOptions({ headerShown: false }), []);
 
-  // const renderItem = ({ item }: any) => (
-  //   <Item text={item.text} user={item.user} />
-  // );
+  const renderItem = ({ item: message }: { item: IMessage }) =>
+    message?.uid === user.uid ? (
+      <SenderMessage key={message.id} text={message.text} />
+    ) : (
+      <ReceiverMessage
+        key={message.id}
+        text={message.text}
+        photoURL={user.photoURL}
+      />
+    );
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={tw`flex-1`}>
       <Header title={user.name} callEnabled={true} />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        // style={tw`flex-1`}
         keyboardVerticalOffset={10}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -65,22 +71,12 @@ const ChatScreen: FC = () => {
             data={messages}
             style={tw`pl-4`}
             keyExtractor={(message) => message.id}
-            renderItem={({ item: message }) =>
-              message?.uid === user.uid ? (
-                <SenderMessage key={message.id} text={message.text} />
-              ) : (
-                <ReceiverMessage
-                  key={message.id}
-                  text={message.text}
-                  photoURL={user.photoURL}
-                />
-              )
-            }
+            renderItem={renderItem}
           />
         </TouchableWithoutFeedback>
 
         <View
-          style={tw`flex-row bg-white justify-between items-center border-t border-gray-200 py-2`}
+          style={tw`flex-row bg-white justify-between items-center border-t border-gray-200 px-5 py-2`}
         >
           <TextInput
             style={tw`h-10 text-lg`}
