@@ -8,11 +8,11 @@ import {
   StyleSheet,
   StatusBar,
 } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { RefAttributes, useLayoutEffect, useRef } from "react";
 import { useNavigation } from "@react-navigation/core";
 import useAuth from "../hooks";
 
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper";
 
 import { fakeUsers as dummy } from "../db/dummy";
@@ -37,11 +37,23 @@ interface IRenderCard {
   photoURL: string;
 }
 
+interface SwiperRefProps {
+  current: {
+    swipeLeft: (mustDecrementCardIndex?: boolean) => void;
+    swipeRight: (mustDecrementCardIndex?: boolean) => void;
+  };
+}
+
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenProp>();
   // const { logout, user } = useAuth();
   const logout = useAuth()?.logout;
   // cosnt user = useAuth()?.user;
+  const swipeRef = useRef<Swiper<any>>(null);
+
+  // const RefSwiper: React.FunctionComponent<
+  //   SwiperProps & RefAttributes<SwiperCore>
+  // > = Swiper;
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -76,6 +88,7 @@ const HomeScreen = () => {
       {/* Home Swipe Stack Card */}
       <View style={tw`flex-1  mt-6`}>
         <Swiper
+          ref={swipeRef}
           containerStyle={styles.swiper}
           cards={dummy}
           stackSize={5}
@@ -111,13 +124,15 @@ const HomeScreen = () => {
       <View style={tw`flex flex-row justify-evenly items-center p-4`}>
         <TouchableOpacity
           style={tw`items-center justify-center rounded-full w-16 h-16 bg-red-200`}
+          onPress={() => swipeRef.current?.swipeLeft()}
         >
-          <Ionicons name="chatbubbles-sharp" size={30} color="red" />
+          <Entypo name="cross" size={24} color="red" />
         </TouchableOpacity>
         <TouchableOpacity
           style={tw`items-center justify-center rounded-full w-16 h-16 bg-green-200`}
+          onPress={() => swipeRef.current?.swipeRight()}
         >
-          <Ionicons name="chatbubbles-sharp" size={30} color="green" />
+          <AntDesign name="heart" size={24} color="green" />
         </TouchableOpacity>
       </View>
       {/* End of Bottom Controls */}
