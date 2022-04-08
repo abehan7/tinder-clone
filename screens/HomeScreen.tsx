@@ -37,13 +37,6 @@ interface IRenderCard {
   photoURL: string;
 }
 
-interface SwiperRefProps {
-  current: {
-    swipeLeft: (mustDecrementCardIndex?: boolean) => void;
-    swipeRight: (mustDecrementCardIndex?: boolean) => void;
-  };
-}
-
 const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenProp>();
   // const { logout, user } = useAuth();
