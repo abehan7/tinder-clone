@@ -19,17 +19,26 @@ import { fakeUsers as dummy } from "../db/dummy";
 import tw from "tailwind-react-native-classnames";
 import { IRootStackParamList, IUser } from "../interfaces";
 import { StackNavigationProp } from "@react-navigation/stack";
+
 const fakeUser: IUser = {
-  name: "John Doe",
   uid: "1",
   photoURL: "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
   createdAt: new Date(),
+  email: "hanjk123@gmail.com",
+  first_name: "John",
+  last_name: "Doe",
+  gender: "male",
 };
 
-type homeScreenProp = StackNavigationProp<IRootStackParamList, "Home">;
+type HomeScreenProp = StackNavigationProp<IRootStackParamList, "Home">;
+
+interface IRenderCard {
+  first_name: string;
+  photoURL: string;
+}
 
 const HomeScreen = () => {
-  const navigation = useNavigation<homeScreenProp>();
+  const navigation = useNavigation<HomeScreenProp>();
   // const { logout, user } = useAuth();
   const logout = useAuth()?.logout;
   // cosnt user = useAuth()?.user;
@@ -69,10 +78,30 @@ const HomeScreen = () => {
         <Swiper
           containerStyle={styles.swiper}
           cards={dummy}
-          renderCard={(card: { first_name: string; photoURL: string }) => (
-            <View style={tw`bg-white h-3/4 rounded-xl `}>
-              <Image source={{ uri: card.photoURL }} />
-              <Text>{card.first_name}</Text>
+          stackSize={5}
+          cardIndex={0}
+          verticalSwipe={false}
+          animateCardOpacity={true}
+          renderCard={(card) => (
+            <View style={tw`bg-white h-3/4 rounded-xl relative`}>
+              <Image
+                source={{ uri: card.photoURL }}
+                style={tw`absolute top-0 h-full w-full rounded-xl`}
+              />
+              <View
+                style={[
+                  tw`absolute bottom-0 bg-white h-20 w-full justify-between flex-row px-6 py-2 rounded-b-xl`,
+                  styles.cardShadow,
+                ]}
+              >
+                <View>
+                  <Text style={tw`text-xl font-bold`}>
+                    {card.first_name} {card.last_name}
+                  </Text>
+                  <Text>{card.email}</Text>
+                </View>
+                <Text style={tw`text-xl font-bold`}>22</Text>
+              </View>
             </View>
           )}
         />
@@ -105,6 +134,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "transparent",
+  },
+  cardShadow: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+
+    shadowRadius: 1.41,
+    elevation: 3,
   },
 });
 

@@ -6,11 +6,17 @@ export interface ILoginResult {
   accessToken: string;
 }
 export interface IUser {
-  name: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  gender: string;
   uid: string;
   photoURL: string;
   createdAt: Date;
 }
+
+// id: 1,
+// photoURL:
 
 export interface IMessage {
   id: string;

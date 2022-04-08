@@ -27,10 +27,11 @@ const user = {
   createdAt: new Date(),
   gender: "female",
 };
+const dummyReversed = dummy.reverse();
 
 const ChatScreen: FC = () => {
   const [input, setInput] = useState<string>("");
-  const [messages, setMessages] = useState<IMessage[]>(dummy.reverse());
+  const [messages, setMessages] = useState<IMessage[]>(dummyReversed);
   const { params } = useRoute();
   const onPress = () => {};
   const sendMessage = () => {};

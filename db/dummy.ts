@@ -163,7 +163,8 @@ export const messages = [
 
 export const fakeUsers = [
   {
-    id: 1,
+    createdAt: Date.now(),
+    uid: 1,
     first_name: "Zendaya",
     last_name: "Coleman",
     email: "hfeifer0@istockphoto.com",
@@ -172,7 +173,8 @@ export const fakeUsers = [
       "https://cdn.britannica.com/32/222532-050-D40B7467/Zendaya-2020.jpg",
   },
   {
-    id: 2,
+    createdAt: Date.now(),
+    uid: 2,
     first_name: "Tom",
     last_name: "Cruise",
     email: "kbatho1@hhs.gov",
@@ -181,7 +183,8 @@ export const fakeUsers = [
       "https://nypost.com/wp-content/uploads/sites/2/2022/02/cruising-in-afr-792987.jpg?quality=90&strip=all",
   },
   {
-    id: 3,
+    createdAt: Date.now(),
+    uid: 3,
     first_name: "Vanessa",
     last_name: "Kirby",
     email: "sdenizet2@shutterfly.com",
@@ -190,7 +193,8 @@ export const fakeUsers = [
       "https://image.cine21.com/resize/cine21/person/2020/0106/15_32_17__5e12d471b0cdd[X252,310].jpg",
   },
   {
-    id: 4,
+    createdAt: Date.now(),
+    uid: 4,
     first_name: "Tom",
     last_name: "Holland",
     email: "pferagh3@wsj.com",
@@ -199,7 +203,8 @@ export const fakeUsers = [
       "https://media.gq.com/photos/618d556416d317dbdd5f613f/master/w_1600%2Cc_limit/tom-holland-gq-cover-men-of-the-year-2021.jpg",
   },
   {
-    id: 5,
+    createdAt: Date.now(),
+    uid: 5,
     first_name: "natalie",
     last_name: "portman",
     email: "espears4@artisteer.com",
@@ -208,7 +213,8 @@ export const fakeUsers = [
       "https://cdn.topstarnews.net/news/photo/202002/729891_447829_3046.jpg",
   },
   {
-    id: 6,
+    createdAt: Date.now(),
+    uid: 6,
     first_name: "Rebecca",
     last_name: "Ferguson",
     email: "espears4@artisteer.com",
