@@ -11,7 +11,7 @@ const StackNavigator = () => {
   const user = useAuth()?.user;
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Chat" component={ChatScreen} />
     </Stack.Navigator>
   );

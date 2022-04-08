@@ -26,10 +26,10 @@ const fakeUser: IUser = {
   createdAt: new Date(),
 };
 
-type chatScreenProp = StackNavigationProp<IRootStackParamList, "Chat">;
+type homeScreenProp = StackNavigationProp<IRootStackParamList, "Home">;
 
 const HomeScreen = () => {
-  const navigation = useNavigation<chatScreenProp>();
+  const navigation = useNavigation<homeScreenProp>();
   // const { logout, user } = useAuth();
   const logout = useAuth()?.logout;
   // cosnt user = useAuth()?.user;
@@ -51,7 +51,10 @@ const HomeScreen = () => {
           />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Image style={tw`h-14 w-14 `} source={require("../logo.png")} />
+          <Image
+            style={tw`h-14 w-14 `}
+            source={require("../assets/images/logo.png")}
+          />
         </TouchableOpacity>
         <TouchableOpacity
           style={tw`absolute right-5 top-3`}
