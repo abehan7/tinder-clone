@@ -1,14 +1,12 @@
 import {
   View,
-  Text,
-  Button,
   SafeAreaView,
   TouchableOpacity,
   Image,
   StyleSheet,
   StatusBar,
 } from "react-native";
-import React, { RefAttributes, useLayoutEffect, useRef } from "react";
+import React, { FC, useLayoutEffect, useRef } from "react";
 import { useNavigation } from "@react-navigation/core";
 import useAuth from "../hooks";
 
@@ -19,6 +17,7 @@ import { fakeUsers as dummy } from "../db/dummy";
 import tw from "tailwind-react-native-classnames";
 import { IRootStackParamList, IUser } from "../interfaces";
 import { StackNavigationProp } from "@react-navigation/stack";
+import SwiperCard from "../components/Cards/SwiperCard";
 
 const fakeUser: IUser = {
   uid: "1",
@@ -32,27 +31,14 @@ const fakeUser: IUser = {
 
 type HomeScreenProp = StackNavigationProp<IRootStackParamList, "Home">;
 
-interface IRenderCard {
-  first_name: string;
-  photoURL: string;
-}
-
-const HomeScreen = () => {
+const HomeScreen: FC = () => {
   const navigation = useNavigation<HomeScreenProp>();
   // const { logout, user } = useAuth();
   const logout = useAuth()?.logout;
   // cosnt user = useAuth()?.user;
   const swipeRef = useRef<Swiper<any>>(null);
 
-  // const RefSwiper: React.FunctionComponent<
-  //   SwiperProps & RefAttributes<SwiperCore>
-  // > = Swiper;
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
+  useLayoutEffect(() => navigation.setOptions({ headerShown: false }), []);
 
   return (
     <SafeAreaView style={[tw`flex-1 justify-center`, styles.container]}>
@@ -79,39 +65,9 @@ const HomeScreen = () => {
       </View>
       {/* End of Header */}
       {/* Home Swipe Stack Card */}
-      <View style={tw`flex-1  mt-6`}>
-        <Swiper
-          ref={swipeRef}
-          containerStyle={styles.swiper}
-          cards={dummy}
-          stackSize={5}
-          cardIndex={0}
-          verticalSwipe={false}
-          animateCardOpacity={true}
-          renderCard={(card) => (
-            <View style={tw`bg-white h-3/4 rounded-xl relative`}>
-              <Image
-                source={{ uri: card.photoURL }}
-                style={tw`absolute top-0 h-full w-full rounded-xl`}
-              />
-              <View
-                style={[
-                  tw`absolute bottom-0 bg-white h-20 w-full justify-between flex-row px-6 py-2 rounded-b-xl`,
-                  styles.cardShadow,
-                ]}
-              >
-                <View>
-                  <Text style={tw`text-xl font-bold`}>
-                    {card.first_name} {card.last_name}
-                  </Text>
-                  <Text>{card.email}</Text>
-                </View>
-                <Text style={tw`text-xl font-bold`}>22</Text>
-              </View>
-            </View>
-          )}
-        />
-      </View>
+      {/* TODO: 여기 오류남. 일단 넘기기. aws연결하면 사라질듯 함 */}
+      {/* 그래도 오류나면 더미 맨 마지막에 넣어서 조건문 만들기 */}
+      <SwiperCard swipeRef={swipeRef} />
       {/* End of Home Swipe Stack Card */}
       {/* Bottom Controls */}
       <View style={tw`flex flex-row justify-evenly items-center p-4`}>
