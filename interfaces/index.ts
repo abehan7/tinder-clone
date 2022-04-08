@@ -1,13 +1,15 @@
+import { ParamListBase } from "@react-navigation/native";
+
 export interface ILoginResult {
   type: string;
   idToken: string;
   accessToken: string;
 }
 export interface IUser {
-  id: string;
   name: string;
-  email: string;
-  picture: string;
+  uid: string;
+  photoURL: string;
+  createdAt: Date;
 }
 
 export interface IMessage {
@@ -17,4 +19,10 @@ export interface IMessage {
   email: string;
   text: string;
   createAt: string;
+}
+
+export interface IRootStackParamList extends ParamListBase {
+  Home: undefined;
+  Chat: undefined;
+  // Chat: { uid: string };
 }
